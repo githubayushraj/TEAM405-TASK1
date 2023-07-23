@@ -1,0 +1,25 @@
+
+import React, { useState } from 'react';
+import countriesData from './countriesData';
+import SearchBar from './components/SearchBar';
+import CountryCard from './components/CountryCard';
+
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const filteredCountries = countriesData.filter((country) =>
+    country.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="app">
+      <h1>Country Search App</h1>
+      <SearchBar handleSearch={setSearchTerm} />
+      <div className="card-container">
+        {filteredCountries.map((country, index) => (
+          <CountryCard key={index} country={country} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
